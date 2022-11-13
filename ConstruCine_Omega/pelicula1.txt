@@ -1,0 +1,6 @@
+1/Nombre/Sinopsis/Idioma
+2/Nombre/Sinopsis/Idioma
+3/Nombre/Sinopsis/Idioma
+4/Nombre/Sinopsis/Idioma
+5/Nombre/Sinopsis/Idioma
+6/Nombre/Sinopsis/Idioma
