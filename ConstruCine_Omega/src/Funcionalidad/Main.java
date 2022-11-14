@@ -4,18 +4,26 @@
  */
 package Funcionalidad;
 
+
+import java.util.ArrayList;
 import ModeloLogin.Sistema;
 import java.io.IOException;
 
-/**
- *
- * @author daroz
- */
+
 public class Main {
 
     
-    public static void main(String[] args) throws IOException {
-        Sistema sistema = new Sistema();
+    public static void main(String[] args) {
+        System.out.println("Hola soy la clase principal!, un saludo :3");
+        
+     ProcesadorPeliculas pelis = new ProcesadorPeliculas("peliculas.txt");
+     pelis.procesar();
+     pelis.imprimir();
+     ProcesadorSalas salas = new ProcesadorSalas("salas.txt");
+     salas.procesar();
+     salas.imprimir();
+     Sistema sistema = new Sistema();
+     
     }
     
 }

@@ -1,0 +1,1 @@
+1.- los datos de un archivo esten mal, por exeder la cantidad de datos.
