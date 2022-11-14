@@ -4,6 +4,9 @@
  */
 package Funcionalidad;
 
+import ModeloLogin.Sistema;
+import java.io.IOException;
+
 /**
  *
  * @author daroz
@@ -11,8 +14,8 @@ package Funcionalidad;
 public class Main {
 
     
-    public static void main(String[] args) {
-        System.out.println("Hola soy la clase principal!, un saludo :3");
+    public static void main(String[] args) throws IOException {
+        Sistema sistema = new Sistema();
     }
     
 }
