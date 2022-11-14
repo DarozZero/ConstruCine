@@ -4,12 +4,12 @@
  */
 package Funcionalidad;
 
-import java.util.ArrayList;
 
-/**
- *
- * @author daroz
- */
+import java.util.ArrayList;
+import ModeloLogin.Sistema;
+import java.io.IOException;
+
+
 public class Main {
 
     
@@ -22,6 +22,7 @@ public class Main {
      ProcesadorSalas salas = new ProcesadorSalas("salas.txt");
      salas.procesar();
      salas.imprimir();
+     Sistema sistema = new Sistema();
      
     }
     
