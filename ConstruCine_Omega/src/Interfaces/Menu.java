@@ -19,7 +19,7 @@ public final class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
-        super.setTitle("CINEdwIN");
+        super.setTitle("Omega");
         super.setResizable(false);
         super.setLocationRelativeTo(null);
         AgregarAComboboxPelicula();
@@ -472,7 +472,9 @@ public final class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxPeliculasActionPerformed
 
     private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
+        Ticket tiket = new Ticket();
         System.out.println("list0o0o");
+        
     }//GEN-LAST:event_jButtonContinuarActionPerformed
 
     private void jTextFieldCantidadDeBoletosAdultosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCantidadDeBoletosAdultosActionPerformed

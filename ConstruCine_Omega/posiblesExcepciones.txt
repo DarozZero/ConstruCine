@@ -1,1 +1,3 @@
 1.- los datos de un archivo esten mal, por exeder la cantidad de datos.
+2.- hay problemas con las imagenes del menu, ni cambiando la raiz funciona, hay que revizarlo
+3.- Se corrompe la info de las imagenes del ticket, hay que encontrar una solucion

@@ -1,4 +1,3 @@
-
 package Funcionalidad;
 
 import java.util.ArrayList;
@@ -11,23 +10,18 @@ public class ProcesadorPeliculas extends Procesador {
     private ArrayList<String[]> infoOrdenada ;
 
     public ProcesadorPeliculas(String direccion) {
-        setArchivo(direccion);
-        
+        setArchivo(direccion);   
     }
-   
-
     @Override
     public void procesar() {
        ArrayList<String> noProcesada = getArchivo().getInformacionNoProcesada();
        infoOrdenada = new ArrayList<String[]>();
        for(int i=0; i<noProcesada.size();i++){
-           String peli = noProcesada.get(i);
-           String[] datosSeparados = peli.split("/");
+           String pelicula = noProcesada.get(i);
+           String[] datosSeparados = pelicula.split("/");
            infoOrdenada.add(datosSeparados);
        }
-        
     }
-
     @Override
     public void imprimir() {
         for(int i=0;i<infoOrdenada.size();i++){
@@ -35,6 +29,5 @@ public class ProcesadorPeliculas extends Procesador {
                     + infoOrdenada.get(i)[1] + "\nSinopsis: " +infoOrdenada.get(i)[2]
                      + "\nIdioma :" + infoOrdenada.get(i)[3] + "\n\n");
         }
-    }
-    
+    }  
 }
