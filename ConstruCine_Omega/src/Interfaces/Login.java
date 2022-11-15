@@ -21,9 +21,7 @@ public class Login extends javax.swing.JFrame {
     public Login(AdministradorUsuarios admin) {
         initComponents();
         setLocationRelativeTo(null);
-        this.admin = admin;
-        
-        
+        this.admin = admin;  
     }
 
     /**

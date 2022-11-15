@@ -9,25 +9,19 @@ import java.util.ArrayList;
  */
 public class ProcesadorSalas extends Procesador{
     private ArrayList<String[]> infoOrdenada;
-
      public ProcesadorSalas(String direccion) {
         setArchivo(direccion);
-        
     }
-   
-
     @Override
     public void procesar() {
        ArrayList<String> noProcesada = getArchivo().getInformacionNoProcesada();
        infoOrdenada = new ArrayList<String[]>();
        for(int i=0; i<noProcesada.size();i++){
-           String peli = noProcesada.get(i);
-           String[] datosSeparados = peli.split("/");
+           String sala = noProcesada.get(i);
+           String[] datosSeparados = sala.split("/");
            infoOrdenada.add(datosSeparados);
-       }
-        
+       }   
     }
-
     @Override
     public void imprimir() {
         for(int i=0;i<infoOrdenada.size();i++){
@@ -35,6 +29,5 @@ public class ProcesadorSalas extends Procesador{
                     + infoOrdenada.get(i)[1] + "\nNumero Pelicula: " +infoOrdenada.get(i)[2]
                     + "\n\n");
         }
-    }
-    
+    }   
 }
