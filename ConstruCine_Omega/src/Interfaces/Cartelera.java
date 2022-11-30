@@ -12,12 +12,12 @@ import javax.swing.ImageIcon;
  *
  * @author studi
  */
-public final class Menu extends javax.swing.JFrame {
+public final class Cartelera extends javax.swing.JFrame {
     public int cantidadBoletos=0;
     /**
      * Creates new form Menu
      */
-    public Menu() {
+    public Cartelera() {
         initComponents();
         super.setTitle("Omega");
         super.setResizable(false);

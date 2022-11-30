@@ -5,7 +5,7 @@
  */
 package ModeloLogin;
 
-import Interfaces.Menu;
+import Interfaces.Cartelera;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -36,7 +36,7 @@ public class AdministradorUsuarios {
             alertaContraseñaIncorrecta();
         }else{ 
             alertaContraseñaCorrecta();
-            Menu cartelera = new Menu();
+            Cartelera cartelera = new Cartelera();
             cartelera.setVisible(true);
            
         }
