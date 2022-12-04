@@ -5,19 +5,32 @@
  */
 package Interfaces;
 
+import Funcionalidad.ProcesadorPeliculas;
+import Funcionalidad.ProcesadorSalas;
+import java.io.File;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author studi
  */
 public final class Cartelera extends javax.swing.JFrame {
-    public int cantidadBoletos=0;
+   private int cantidadBoletos=0;
+   private ArrayList<String[]> pelis;
+   private ArrayList<String[]> salas;
     /**
      * Creates new form Menu
      */
     public Cartelera() {
+        ProcesadorPeliculas peliculasPro = new ProcesadorPeliculas("peliculas.txt");
+        peliculasPro.procesar();
+        ProcesadorSalas salasPro = new ProcesadorSalas("salas.txt");
+        salasPro.procesar();
+        pelis = peliculasPro.getInfoOrdenada();
+        salas = salasPro.getInfoOrdenada();
         initComponents();
         super.setTitle("Omega");
         super.setResizable(false);
@@ -26,20 +39,17 @@ public final class Cartelera extends javax.swing.JFrame {
     }
 
     void Activar() {
-        jRadioButtonEfectivo.setEnabled(true);
-        jTextFieldCantidadDeBoletos.setEnabled(true);
+        boletosCant.setEnabled(true);
         jButtonContinuar.setEnabled(true);
     }
 
     void AgregarAComboboxPelicula() {
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
         modelo.addElement("Seleccione");
-        modelo.addElement("Viernes 13");
-        modelo.addElement("La masacre en texas 3");
-        modelo.addElement("Cars 3");
-        modelo.addElement("Spider-Man");
-        modelo.addElement("Batman");
-
+        for(int i=0;i<pelis.size();i++){
+            modelo.addElement(pelis.get(i)[1]);
+        }
+        
         jComboBoxPeliculas.setModel(modelo);
 
     }
@@ -47,11 +57,10 @@ public final class Cartelera extends javax.swing.JFrame {
     void seleccionPelicula() {
         int combo;
         combo = jComboBoxPeliculas.getSelectedIndex();
-        if (combo == 1 || combo == 2 || combo == 3 || combo == 4 || combo == 5) {
+        if (combo == 1 || combo == 2 || combo == 3 || combo == 4 || combo == 5 || combo == 6) {
             Activar();
         } else {
-            jRadioButtonEfectivo.setEnabled(false);
-            jTextFieldCantidadDeBoletos.setEnabled(false);
+            boletosCant.setEnabled(false);
             jButtonContinuar.setEnabled(false);
         }
     }
@@ -67,61 +76,55 @@ public final class Cartelera extends javax.swing.JFrame {
             }
             case 1: {
                 LimCantidad();
-                ImageIcon i = new ImageIcon("src\\Imagenes\\Viernes13.jpg");
+                ImageIcon i = new ImageIcon("src"+File.separator+"Imagenes"+File.separator+"peli1.jpg");
                 jLabelPelicula.setIcon(i);
-                DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-                modelo.addElement("Seleccione");
-                modelo.addElement("4:00 pm");
-                modelo.addElement("6:00 pm");
-                modelo.addElement("8:00 pm");
+                DefaultComboBoxModel modelo;
+                modelo = asignaHorarios(1);
                 jComboBoxHora.setModel(modelo);
                 break;
             }
             case 2: {
                 LimCantidad();
-                ImageIcon i = new ImageIcon("src\\Imagenes\\masacre.jpg");
+                ImageIcon i = new ImageIcon("src"+File.separator+"Imagenes"+File.separator+"peli2.jpg");
                 jLabelPelicula.setIcon(i);
-                DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-                modelo.addElement("Seleccione");
-                modelo.addElement("5:00 pm");
-                modelo.addElement("7:00 pm");
-                modelo.addElement("9:00 pm");
+                DefaultComboBoxModel modelo;
+                modelo = asignaHorarios(2);
                 jComboBoxHora.setModel(modelo);
                 break;
             }
             case 3: {
                 LimCantidad();
-                ImageIcon i = new ImageIcon("src\\Imagenes\\cars.jpg");
+                ImageIcon i = new ImageIcon("src"+File.separator+"Imagenes"+File.separator+"peli3.jpg");
                 jLabelPelicula.setIcon(i);
-                DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-                modelo.addElement("Seleccione");
-                modelo.addElement("12:00 pm");
-                modelo.addElement("2:00 pm");
-                modelo.addElement("4:00 pm");
+                DefaultComboBoxModel modelo;
+                modelo = asignaHorarios(3);
                 jComboBoxHora.setModel(modelo);
                 break;
             }
             case 4: {
                 LimCantidad();
-                ImageIcon i = new ImageIcon("src\\Imagenes\\spider.jpg");
+                ImageIcon i = new ImageIcon("src"+File.separator+"Imagenes"+File.separator+"peli4.jpg");
                 jLabelPelicula.setIcon(i);
-                DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-                modelo.addElement("Seleccione");
-                modelo.addElement("1:00 pm");
-                modelo.addElement("3:00 pm");
-                modelo.addElement("6:30 pm");
+                DefaultComboBoxModel modelo;
+                modelo = asignaHorarios(4);
                 jComboBoxHora.setModel(modelo);
                 break;
             }
             case 5: {
                 LimCantidad();
-                ImageIcon i = new ImageIcon("src\\Imagenes\\bat.png");
+                ImageIcon i = new ImageIcon("src"+File.separator+"Imagenes"+File.separator+"peli5.jpg");
                 jLabelPelicula.setIcon(i);
-                DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-                modelo.addElement("Seleccione");
-                modelo.addElement("2:00 pm");
-                modelo.addElement("5:00 pm");
-                modelo.addElement("8:00 pm");
+                DefaultComboBoxModel modelo;
+               modelo = asignaHorarios(5);
+                jComboBoxHora.setModel(modelo);
+                break;
+            }
+             case 6: {
+                LimCantidad();
+                ImageIcon i = new ImageIcon("src"+File.separator+"Imagenes"+File.separator+"peli6.jpg");
+                jLabelPelicula.setIcon(i);
+                DefaultComboBoxModel modelo;
+                modelo = asignaHorarios(6);
                 jComboBoxHora.setModel(modelo);
                 break;
             }
@@ -131,31 +134,52 @@ public final class Cartelera extends javax.swing.JFrame {
     }
 
     void LimCantidad() {
-        jTextFieldCantidadDeBoletos.setText("");
+        boletosCant.setText("");
     }
 
     void limpiar() {
         ImageIcon i = new ImageIcon("");
         jLabelPelicula.setIcon(i);
-        jTextFieldCantidadDeBoletos.setText("");
+        boletosCant.setText("");
         buttonGroup1.clearSelection();
         jComboBoxPeliculas.removeAllItems();
         jComboBoxHora.removeAllItems();
     }
+    
 
     void calculo() {
         int precio = 60;
         int Total = 0;
 
-        if ("".equals(jTextFieldCantidadDeBoletos.getText())) {
-            jTextFieldCantidadDeBoletos.setText("");
+        if ("".equals(boletosCant.getText())) {
+            boletosCant.setText("");
         } else {
-            cantidadBoletos = Integer.parseInt(jTextFieldCantidadDeBoletos.getText());
+            cantidadBoletos = Integer.parseInt(boletosCant.getText());
         }
         Total = cantidadBoletos*precio;
 
     }
 
+    private DefaultComboBoxModel asignaHorarios(int peli){
+        DefaultComboBoxModel horarios = new DefaultComboBoxModel();
+         horarios.addElement("Seleccione");
+         for(int i=0; i<salas.size();i++){
+             if(peli == Integer.parseInt(salas.get(i)[2])){
+                  horarios.addElement(salas.get(i)[1] + " Sala "+ salas.get(i)[0]);
+             }
+         }
+        return horarios;
+    }
+    
+    private void AsignarBoletos(){
+        String entrada= boletosCant.getText();
+        try{
+            Integer.parseInt(entrada);
+            cantidadBoletos = Integer.parseInt(entrada);
+        }catch(NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null, "Error al ingresar cantidad de boletos");
+        }
+    }
    
 
     /**
@@ -177,16 +201,15 @@ public final class Cartelera extends javax.swing.JFrame {
         jComboBoxHora = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextFieldCantidadDeBoletos = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jRadioButtonEfectivo = new javax.swing.JRadioButton();
-        jButtonContinuar = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        boletosCant = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jButtonContinuar = new javax.swing.JButton();
         jLabelPelicula = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
 
@@ -229,28 +252,15 @@ public final class Cartelera extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(246, 247, 247));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0)));
 
+        jPanel5.setBackground(new java.awt.Color(246, 247, 247));
+
         jLabel12.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel12.setText("Cantidad:");
 
-        jTextFieldCantidadDeBoletos.addActionListener(new java.awt.event.ActionListener() {
+        boletosCant.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        boletosCant.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldCantidadDeBoletosActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jLabel7.setText("Forma de pago:");
-
-        jPanel5.setBackground(new java.awt.Color(246, 247, 247));
-
-        jRadioButtonEfectivo.setBackground(new java.awt.Color(255, 102, 0));
-        buttonGroup1.add(jRadioButtonEfectivo);
-        jRadioButtonEfectivo.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jRadioButtonEfectivo.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButtonEfectivo.setText("Efectivo");
-        jRadioButtonEfectivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonEfectivoActionPerformed(evt);
+                boletosCantActionPerformed(evt);
             }
         });
 
@@ -259,25 +269,20 @@ public final class Cartelera extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jRadioButtonEfectivo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(61, 61, 61)
+                .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(33, 33, 33)
+                .addComponent(boletosCant, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jRadioButtonEfectivo)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(boletosCant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
-
-        jButtonContinuar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        jButtonContinuar.setText("CONTINUAR");
-        jButtonContinuar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonContinuarActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 2, 18)); // NOI18N
         jLabel5.setText("Adultos y niños:");
@@ -291,63 +296,69 @@ public final class Cartelera extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         jLabel8.setText("BOLETOS");
 
+        jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 36)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Cine Omega");
+
+        jButtonContinuar.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        jButtonContinuar.setText("CONTINUAR");
+        jButtonContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonContinuarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(31, 31, 31)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 155, Short.MAX_VALUE)
+                .addComponent(jLabel17)
+                .addGap(123, 123, 123))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(195, 195, 195)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel17))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(298, 298, 298))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldCantidadDeBoletos)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(288, 288, 288))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonContinuar)
-                        .addGap(84, 84, 84))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(74, 74, 74))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(106, 106, 106))))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(295, 295, 295)
+                .addComponent(jButtonContinuar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonContinuar))
+                        .addComponent(jLabel6)
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel6))
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel12))
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel17)
-                            .addComponent(jTextFieldCantidadDeBoletos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                        .addComponent(jLabel8)
+                        .addGap(15, 15, 15)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel17)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jLabelPelicula.setBackground(new java.awt.Color(246, 247, 247));
@@ -366,13 +377,13 @@ public final class Cartelera extends javax.swing.JFrame {
                             .addComponent(jLabel2))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
+                            .addComponent(jLabel3)
+                            .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabelPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(211, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,9 +398,9 @@ public final class Cartelera extends javax.swing.JFrame {
                     .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(jLabelPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         jPanel2.add(jPanel7, java.awt.BorderLayout.LINE_START);
@@ -406,21 +417,22 @@ public final class Cartelera extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxPeliculasActionPerformed
 
     private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
-        Ticket tiket = new Ticket();
-        System.out.println("list0o0o");
+       // Ticket tiket = new Ticket();
+        System.out.println("Funciono!");
+        AsignarBoletos();
+        if(cantidadBoletos < 9){
+            System.out.println("Todo bien");
+        }else JOptionPane.showMessageDialog(null, "Cantidad De Boletos Maxima: 8");
         
     }//GEN-LAST:event_jButtonContinuarActionPerformed
 
-    private void jTextFieldCantidadDeBoletosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCantidadDeBoletosActionPerformed
+    private void boletosCantActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boletosCantActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldCantidadDeBoletosActionPerformed
-
-    private void jRadioButtonEfectivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonEfectivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonEfectivoActionPerformed
+    }//GEN-LAST:event_boletosCantActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTextField boletosCant;
     public static javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButtonContinuar;
     public static javax.swing.JComboBox<String> jComboBoxHora;
@@ -432,8 +444,8 @@ public final class Cartelera extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     public static javax.swing.JLabel jLabelPelicula;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
@@ -441,7 +453,5 @@ public final class Cartelera extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
-    public static javax.swing.JRadioButton jRadioButtonEfectivo;
-    public static javax.swing.JTextField jTextFieldCantidadDeBoletos;
     // End of variables declaration//GEN-END:variables
 }

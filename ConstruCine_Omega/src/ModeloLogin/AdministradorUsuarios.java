@@ -36,8 +36,7 @@ public class AdministradorUsuarios {
             alertaContraseñaIncorrecta();
         }else{ 
             alertaContraseñaCorrecta();
-            Cartelera cartelera = new Cartelera();
-            cartelera.setVisible(true);
+           
            
         }
        
@@ -73,7 +72,7 @@ public class AdministradorUsuarios {
     }
     
     private void alertaContraseñaCorrecta(){
-        JOptionPane.showMessageDialog(null, "CONTRASEÑA CORRECTA","ENHORABUENA", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "CONTRASEÑA CORRECTA\n Bienvenido al Cine Omega","ENHORABUENA", JOptionPane.INFORMATION_MESSAGE);
     }
     
 }
