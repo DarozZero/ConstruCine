@@ -468,7 +468,7 @@ public final class Cartelera extends javax.swing.JFrame {
             
             
             //SelectorAsientos lugares= new SelectorAsientos(cantidadBoletos, "Sala1", "10:00");
-        }
+        }else  JOptionPane.showMessageDialog(null, "Error al ingresar cantidad de boletos (La cantidad maxima son 8)");
         
     }//GEN-LAST:event_jButtonContinuarActionPerformed
 

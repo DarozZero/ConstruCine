@@ -1,0 +1,5 @@
+Ejecuta el comando en la terminal: java -jar ConstruCine_Omega.jar
+
+En usuario ingresa Admin y contraseña pollo
+
+El resto es intuitivo
