@@ -165,20 +165,34 @@ public final class Cartelera extends javax.swing.JFrame {
          horarios.addElement("Seleccione");
          for(int i=0; i<salas.size();i++){
              if(peli == Integer.parseInt(salas.get(i)[2])){
-                  horarios.addElement(salas.get(i)[1] + " Sala "+ salas.get(i)[0]);
+                  horarios.addElement(salas.get(i)[1] + ", Sala "+ salas.get(i)[0]);
              }
          }
         return horarios;
     }
     
-    private void AsignarBoletos(){
+    private boolean AsignarBoletos(){
         String entrada= boletosCant.getText();
         try{
             Integer.parseInt(entrada);
             cantidadBoletos = Integer.parseInt(entrada);
+            return cantidadBoletos < 9 && cantidadBoletos > 0;
         }catch(NumberFormatException nfe){
-            JOptionPane.showMessageDialog(null, "Error al ingresar cantidad de boletos");
+            JOptionPane.showMessageDialog(null, "Error al ingresar cantidad de boletos (La cantidad maxima son 8)");
+            return false;
         }
+    }
+    private String rutaAsientos(int pelicula, String horario){
+        String resultado = null;
+        for(int i=0; i<salas.size();i++){
+            if ( pelicula == Integer.parseInt(salas.get(i)[2])){
+                if(salas.get(i)[1].equals(horario)){
+                    resultado = "Sala"+salas.get(i)[0]; 
+                return resultado;
+                }
+            }
+        }
+        return resultado;
     }
    
 
@@ -418,11 +432,20 @@ public final class Cartelera extends javax.swing.JFrame {
 
     private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
        // Ticket tiket = new Ticket();
-        System.out.println("Funciono!");
         AsignarBoletos();
-        if(cantidadBoletos < 9){
+        if(AsignarBoletos()){
             System.out.println("Todo bien");
-        }else JOptionPane.showMessageDialog(null, "Cantidad De Boletos Maxima: 8");
+            int numPeli = jComboBoxPeliculas.getSelectedIndex();
+            String horario = jComboBoxHora.getItemAt(jComboBoxHora.getSelectedIndex());
+            String[] partes = horario.split(",");
+           // System.out.println("index peli = " + numPeli );
+           // System.out.println(partes[0]);
+           //System.out.println(rutaAsientos(numPeli,partes[0]));
+           SelectorAsientos lugares= new SelectorAsientos(cantidadBoletos,rutaAsientos(numPeli,partes[0]) ,partes[0]);
+            
+            
+            //SelectorAsientos lugares= new SelectorAsientos(cantidadBoletos, "Sala1", "10:00");
+        }
         
     }//GEN-LAST:event_jButtonContinuarActionPerformed
 

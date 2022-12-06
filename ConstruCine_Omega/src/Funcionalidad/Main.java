@@ -10,8 +10,6 @@ public class Main {
 
     
     public static void main(String[] args) throws IOException {
-        System.out.println("Hola soy la clase principal!, un saludo :3");
- 
      //////////////////////////////////////////////////////////////////////////////////////////////
      //Inicio del sistema//
     // Sistema sistema = new Sistema();
