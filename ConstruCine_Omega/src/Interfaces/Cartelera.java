@@ -81,6 +81,7 @@ public final class Cartelera extends javax.swing.JFrame {
                 DefaultComboBoxModel modelo;
                 modelo = asignaHorarios(1);
                 jComboBoxHora.setModel(modelo);
+                labelLenguaje.setText(pelis.get(combo-1)[3]);
                 break;
             }
             case 2: {
@@ -90,6 +91,7 @@ public final class Cartelera extends javax.swing.JFrame {
                 DefaultComboBoxModel modelo;
                 modelo = asignaHorarios(2);
                 jComboBoxHora.setModel(modelo);
+                labelLenguaje.setText(pelis.get(combo-1)[3]);
                 break;
             }
             case 3: {
@@ -99,6 +101,7 @@ public final class Cartelera extends javax.swing.JFrame {
                 DefaultComboBoxModel modelo;
                 modelo = asignaHorarios(3);
                 jComboBoxHora.setModel(modelo);
+                labelLenguaje.setText(pelis.get(combo-1)[3]);
                 break;
             }
             case 4: {
@@ -108,6 +111,7 @@ public final class Cartelera extends javax.swing.JFrame {
                 DefaultComboBoxModel modelo;
                 modelo = asignaHorarios(4);
                 jComboBoxHora.setModel(modelo);
+                labelLenguaje.setText(pelis.get(combo-1)[3]);
                 break;
             }
             case 5: {
@@ -117,6 +121,7 @@ public final class Cartelera extends javax.swing.JFrame {
                 DefaultComboBoxModel modelo;
                modelo = asignaHorarios(5);
                 jComboBoxHora.setModel(modelo);
+                labelLenguaje.setText(pelis.get(combo-1)[3]);
                 break;
             }
              case 6: {
@@ -126,6 +131,7 @@ public final class Cartelera extends javax.swing.JFrame {
                 DefaultComboBoxModel modelo;
                 modelo = asignaHorarios(6);
                 jComboBoxHora.setModel(modelo);
+                labelLenguaje.setText(pelis.get(combo-1)[3]);
                 break;
             }
             default:
@@ -225,6 +231,8 @@ public final class Cartelera extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jButtonContinuar = new javax.swing.JButton();
         jLabelPelicula = new javax.swing.JLabel();
+        labelLenguaje = new javax.swing.JLabel();
+        labelLenguaje1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -378,6 +386,14 @@ public final class Cartelera extends javax.swing.JFrame {
         jLabelPelicula.setBackground(new java.awt.Color(246, 247, 247));
         jLabelPelicula.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0)));
 
+        labelLenguaje.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        labelLenguaje.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelLenguaje.setText("lenguaje");
+
+        labelLenguaje1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        labelLenguaje1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelLenguaje1.setText("Lenguaje:");
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
@@ -392,7 +408,12 @@ public final class Cartelera extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(68, 68, 68)
+                                .addComponent(labelLenguaje1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelLenguaje, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabelPelicula, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -409,7 +430,9 @@ public final class Cartelera extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxPeliculas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxHora, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelLenguaje)
+                    .addComponent(labelLenguaje1))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabelPelicula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -441,7 +464,7 @@ public final class Cartelera extends javax.swing.JFrame {
            // System.out.println("index peli = " + numPeli );
            // System.out.println(partes[0]);
            //System.out.println(rutaAsientos(numPeli,partes[0]));
-           SelectorAsientos lugares= new SelectorAsientos(cantidadBoletos,rutaAsientos(numPeli,partes[0]) ,partes[0]);
+           SelectorAsientos lugares= new SelectorAsientos(cantidadBoletos,rutaAsientos(numPeli,partes[0]) ,partes[0],pelis.get(numPeli-1)[1]);
             
             
             //SelectorAsientos lugares= new SelectorAsientos(cantidadBoletos, "Sala1", "10:00");
@@ -476,5 +499,7 @@ public final class Cartelera extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JLabel labelLenguaje;
+    private javax.swing.JLabel labelLenguaje1;
     // End of variables declaration//GEN-END:variables
 }
