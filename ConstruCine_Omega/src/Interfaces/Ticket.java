@@ -1,6 +1,12 @@
 package Interfaces;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import org.apache.pdfbox.pdmodel.*;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -82,6 +88,7 @@ public class Ticket extends javax.swing.JFrame {
         label8.setVisible(false);
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel2.setPreferredSize(new java.awt.Dimension(600, 67));
 
         labelPeli.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         labelPeli.setForeground(new java.awt.Color(255, 255, 255));
@@ -122,14 +129,9 @@ public class Ticket extends javax.swing.JFrame {
         labelAsientos.setForeground(new java.awt.Color(255, 255, 255));
         labelAsientos.setText("NumAs");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cine1.png"))); // NOI18N
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cine1.png"))); // NOI18N
-        jLabel3.setPreferredSize(new java.awt.Dimension(300, 67));
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/cine2.png"))); // NOI18N
         jLabel4.setMaximumSize(new java.awt.Dimension(0, 0));
         jLabel4.setMinimumSize(new java.awt.Dimension(0, 0));
+        jLabel4.setPreferredSize(new java.awt.Dimension(136, 120));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -138,48 +140,47 @@ public class Ticket extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 1, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelSala))
+                        .addGap(199, 199, 199)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jLabel5)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelFecha)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelHora))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(labelPeli, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(24, 24, 24)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelAsientos, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelSala))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(74, 74, 74)
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelFecha)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelHora))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(labelPeli, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addGap(3, 3, 3)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(labelPeli)
                         .addGap(14, 14, 14)
@@ -187,13 +188,14 @@ public class Ticket extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(labelFecha)
                             .addComponent(labelHora))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(labelAsientos)
                             .addComponent(jLabel10)
-                            .addComponent(labelSala))
-                        .addContainerGap(31, Short.MAX_VALUE))))
+                            .addComponent(labelSala)))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE))
+                .addGap(60, 60, 60))
         );
 
         jLabel9.setBackground(new java.awt.Color(0, 0, 0));
@@ -254,12 +256,12 @@ public class Ticket extends javax.swing.JFrame {
                         .addGap(17, 17, 17)
                         .addComponent(jLabel9)
                         .addGap(18, 18, 18)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(19, 19, 19)
                 .addComponent(jButtonContinuar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonContinuar1)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,6 +269,50 @@ public class Ticket extends javax.swing.JFrame {
 
     private void jButtonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuarActionPerformed
         System.out.println("generandoPDF");
+        
+         PDDocument documento = new PDDocument();
+        PDPage pagina =new PDPage(PDRectangle.A6);
+        documento.addPage(pagina);
+        try {
+            PDPageContentStream contenido = new PDPageContentStream(documento,pagina);
+            
+            contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD,12);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52*1);
+            contenido.showText("Cine Omega");
+            contenido.endText();
+            
+            
+            contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD,12);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52*2);
+            contenido.showText("Pelicula: "+labelPeli.getText());
+            contenido.endText();
+            
+            
+            contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD,12);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52*3);
+            contenido.showText("Fecha: "+labelFecha.getText() + "     Hora: " + labelHora.getText());
+            contenido.endText();
+            
+            
+             contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD,12);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52*4);
+            contenido.showText("Sala: "+labelSala.getText() + "     Asientos: " + labelAsientos.getText());
+            contenido.endText();
+            
+            contenido.close();
+            
+            documento.save("Recursos"+File.separator+"Tiket" + labelSala.getText() +labelHora.getText()+".pdf");
+            JOptionPane.showMessageDialog(null, "Documento Creado");
+            this.dispose();
+            
+            
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Error al crear pdf" + ex.getMessage());
+        }
     }//GEN-LAST:event_jButtonContinuarActionPerformed
 
     private void jButtonContinuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinuar1ActionPerformed

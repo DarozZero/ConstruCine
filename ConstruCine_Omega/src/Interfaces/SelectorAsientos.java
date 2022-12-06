@@ -41,6 +41,7 @@ public class SelectorAsientos extends javax.swing.JFrame {
         initComponents();
         this.setVisible(true);
         actualizarBotones();
+        labeltotal.setText(Integer.toString(60*cantidadBoletos)+"$");
     }
    
     private void actualizarBotones(){
@@ -75,7 +76,7 @@ public class SelectorAsientos extends javax.swing.JFrame {
 
         backGroud = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         buttonA3 = new javax.swing.JButton();
         buttonA1 = new javax.swing.JButton();
@@ -140,6 +141,8 @@ public class SelectorAsientos extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         ButtonContinue = new javax.swing.JButton();
         buttonBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        labeltotal = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,9 +150,9 @@ public class SelectorAsientos extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(233, 119, 19));
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Selector de Asientos");
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Selector de Asientos");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -159,7 +162,7 @@ public class SelectorAsientos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
@@ -168,7 +171,7 @@ public class SelectorAsientos extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
@@ -960,6 +963,14 @@ public class SelectorAsientos extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Total:");
+
+        labeltotal.setFont(new java.awt.Font("Century Gothic", 1, 24)); // NOI18N
+        labeltotal.setForeground(new java.awt.Color(0, 0, 0));
+        labeltotal.setText("$");
+
         javax.swing.GroupLayout backGroudLayout = new javax.swing.GroupLayout(backGroud);
         backGroud.setLayout(backGroudLayout);
         backGroudLayout.setHorizontalGroup(
@@ -972,6 +983,10 @@ public class SelectorAsientos extends javax.swing.JFrame {
             .addGroup(backGroudLayout.createSequentialGroup()
                 .addGap(83, 83, 83)
                 .addComponent(buttonBack, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(labeltotal, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ButtonContinue, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(83, 83, 83))
@@ -982,10 +997,12 @@ public class SelectorAsientos extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addGap(32, 32, 32)
                 .addGroup(backGroudLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonBack)
-                    .addComponent(ButtonContinue))
+                    .addComponent(ButtonContinue)
+                    .addComponent(jLabel1)
+                    .addComponent(labeltotal))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
 
@@ -1328,9 +1345,11 @@ public class SelectorAsientos extends javax.swing.JFrame {
     private javax.swing.JButton buttonF8;
     private javax.swing.JButton buttonF9;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel labeltotal;
     // End of variables declaration//GEN-END:variables
 
 private void cambiarEstado(int fila, int numero,char estado){
