@@ -21,6 +21,7 @@ public class Lector {
         }
     }
     
+    
     private void getInfoDelArchivo(Scanner unprocessedInfo){
          this.informacionNoProcesada= new ArrayList<String>();
          while(unprocessedInfo.hasNextLine()){

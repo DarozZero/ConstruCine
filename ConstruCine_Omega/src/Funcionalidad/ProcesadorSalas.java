@@ -12,6 +12,11 @@ public class ProcesadorSalas extends Procesador{
      public ProcesadorSalas(String direccion) {
         setArchivo(direccion);
     }
+
+    public ArrayList<String[]> getInfoOrdenada() {
+        return infoOrdenada;
+    }
+    
     @Override
     public void procesar() {
        ArrayList<String> noProcesada = getArchivo().getInformacionNoProcesada();
