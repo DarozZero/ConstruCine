@@ -18,15 +18,18 @@ public class SelectorAsientos extends javax.swing.JFrame {
     private int cantidadBoletos;
     private String sala;
     private String horario;
+    private String nombrePeli;
     
     /**
      * Creates new form SelectorAsientos
      * @param cantidadBoletos
      * @param sala
      * @param horario
+     * @param nombrePeli
      */
-    public SelectorAsientos(int cantidadBoletos, String sala, String horario) {
+    public SelectorAsientos(int cantidadBoletos, String sala, String horario, String nombrePeli) {
         this.cantidadBoletos=cantidadBoletos;
+        this.nombrePeli = nombrePeli;
         this.sala = sala;
         this.horario = horario;
         //System.out.println(sala+","+horario+".txt");
@@ -34,6 +37,7 @@ public class SelectorAsientos extends javax.swing.JFrame {
         salaActual.procesar();
         asientos = salaActual.getInfoOrdenada();
         this.setLocation(500,200);
+        super.setResizable(false);
         initComponents();
         this.setVisible(true);
         actualizarBotones();
@@ -53,8 +57,11 @@ public class SelectorAsientos extends javax.swing.JFrame {
     private void reservar(){
          ProcesadorLugares salaActual = new ProcesadorLugares(sala+","+horario+".txt");
          salaActual.procesar();
-         salaActual.editarTexto(asientos);
-         
+         salaActual.editarTexto(asientos);   
+    }
+    private void generarTicket(){
+        
+        Ticket nuevo = new Ticket(nombrePeli, horario,asientosOcupados(), sala);
     }
 
     /**
@@ -998,8 +1005,9 @@ public class SelectorAsientos extends javax.swing.JFrame {
 
     private void ButtonContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonContinueActionPerformed
         if(cantidadBoletos==0){
-            reservar();
-            this.dispose();
+           generarTicket();
+           reservar(); 
+           this.dispose();
             
         }else JOptionPane.showMessageDialog(null, "Quedan boletos por Asignar!");
     }//GEN-LAST:event_ButtonContinueActionPerformed
@@ -1252,7 +1260,7 @@ public class SelectorAsientos extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       SelectorAsientos prueba = new SelectorAsientos(3, "Sala1", "10:00");
+       SelectorAsientos prueba = new SelectorAsientos(3, "Sala1", "10:00","FilmRed");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2108,5 +2116,25 @@ private void contenidoDentroBotones(int fila, int columna){
                 JOptionPane.showMessageDialog(null,"Este asiento se encuentra reservado!");
                 break;
         }
+}
+private String asientosOcupados(){
+     ArrayList<String[]> cosa = new ArrayList<>();
+        cosa.add("A1,A2,A3,A4,A5,A6,A7,A8,A9,A10".split(","));
+        cosa.add("B1,B2,B3,B4,B5,B6,B7,B8,B9,B10".split(","));
+        cosa.add("C1,C2,C3,C4,C5,C6,C7,C8,C9,C10".split(","));
+        cosa.add("D1,D2,D3,D4,D5,D6,D7,D8,D9,D10".split(","));
+        cosa.add("E1,E2,E3,E4,E5,E6,E7,E8,E9,E10".split(","));
+        cosa.add("F1,F2,F3,F4,F5,F6,F7,F8,F9,F10".split(","));
+        String salida= null;
+        for(int i=0;i<asientos.size();i++){
+            for(int j=0;j<asientos.get(i).length;j++){
+                if(asientos.get(i)[j]=="O"){
+                    if(salida!=null){
+                        salida=salida+","+cosa.get(i)[j];
+                    }else salida = cosa.get(i)[j];
+                }
+            }
+        }
+    return salida;
 }
 }
